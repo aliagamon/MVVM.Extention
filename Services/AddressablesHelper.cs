@@ -37,7 +37,7 @@ namespace MVVM.Extension.Services
             }
         }
         
-        public static async UniTask<T> LoadAssetAsync<T>(AssetReferenceT<T> reference)
+        public static async UniTask<T> LoadAssetAsync<T>(AssetReferenceT<T> reference) where T : Object
         {
             var handle = reference.LoadAssetAsync();
             await handle.ToUniTask();
