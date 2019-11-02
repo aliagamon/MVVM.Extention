@@ -1,7 +1,6 @@
 ﻿using DryIocAttributes;
 using UnityEngine;
 using System;
-using ILogger = MVVM.Core.Services.ILogger;
 
 namespace MVVM.Extension.Services
 {
@@ -16,6 +15,13 @@ namespace MVVM.Extension.Services
 
         public override void LogError(string message) =>
             Debug.LogError(message);
+
+        public override void Assert(bool condition, string message = null)
+        {
+            if(message is null)
+                Debug.Assert(condition);
+            else Debug.Assert(condition, message);
+        }
 
         public override void LogException(Exception exception) =>
             Debug.LogException(exception);
