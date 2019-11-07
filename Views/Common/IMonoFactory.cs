@@ -15,12 +15,16 @@ namespace MVVM.Extension.Views.Common
         UniTask<TComponentType> GetInstanceAsync<TComponentType>(AssetReference reference, Transform parent = null)
             where TComponentType : Component;
 
+        UniTask<TObject> LoadAsync<TObject>(string componentId)
+            where TObject : Object;
+        
 
         UniTask<GameObject> GetInstanceAsync(string componentId, Transform parent = null);
 
         GameObject GetInstance(GameObject prefab, Transform parent = null);
 
         UniTask<GameObject> GetInstanceAsync(AssetReference reference, Transform parent = null);
+
         void Release(GameObject instance);
     }
 

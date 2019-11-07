@@ -34,6 +34,13 @@ namespace MVVM.Extension.Views.Common
             return instance;
         }
 
+        public async UniTask<TObject> LoadAsync<TObject>(string componentId) where TObject : Object
+        {
+            var handler = Addressables.LoadAssetAsync<TObject>(componentId);
+            var instance = await HandleAddressableCreation(handler);
+            return instance;
+        }
+
         public async UniTask<GameObject> GetInstanceAsync(string componentId, Transform parent = null)
         {
             return await CreateInstanceAsync(componentId, parent);
@@ -88,7 +95,7 @@ namespace MVVM.Extension.Views.Common
             return instance != null ? instance.GetComponent<TComponentType>() : null;
         }
 
-        private async UniTask<GameObject> HandleAddressableCreation(AsyncOperationHandle<GameObject> handle)
+        private async UniTask<T> HandleAddressableCreation<T>(AsyncOperationHandle<T> handle)
         {
             await handle.ToUniTask();
             if (handle.Status == AsyncOperationStatus.Succeeded)
@@ -101,7 +108,7 @@ namespace MVVM.Extension.Views.Common
             else
             {
                 _logger.LogError(handle.OperationException.ToString());
-                return null;
+                return default(T);
             }
         }
     }
