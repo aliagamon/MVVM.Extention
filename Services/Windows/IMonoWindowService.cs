@@ -12,7 +12,7 @@ namespace MVVM.Extension.Services.Windows
             bool dialogue = false
         ) where TWindow : Component;
 
-        UniTask<TWindow> ShowWindowSingletonAsync<TWindow>(string windowName)
+        UniTask<TWindow> ShowWindowSingletonAsync<TWindow>(string windowName, bool isDialogue)
             where TWindow : Component;
         void CloseWindow(Component window);
     }

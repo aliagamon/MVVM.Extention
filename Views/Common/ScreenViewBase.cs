@@ -91,13 +91,13 @@ namespace MVVM.Extension.Views.Common
             !window.gameObject.name.StartsWith(SingletonMark);
 
         public async UniTask<TWindow> ShowWindowSingletonAsync<TWindow>
-            (string windowName) where TWindow : Component
+            (string windowName, bool isDialogue) where TWindow : Component
         {
             var window = FindObjectOfType<TWindow>()
                 ?? await MakeWindow<TWindow>
                 (
                     windowName,
-                    _windowRoot
+                    isDialogue ? _dialogueRoot : _windowRoot
                 );
             if (IsSingleton(window.gameObject))
                 window.gameObject.name = SingletonMark +

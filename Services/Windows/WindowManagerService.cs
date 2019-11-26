@@ -88,8 +88,8 @@ namespace MVVM.Extension.Services.Windows
             var window = await
                 (
                     isSingleton ?
-                         windowService.ShowWindowSingletonAsync<T>(typeof(T).Name)
-                         : windowService.ShowWindowAsync<T>(typeof(T).Name)
+                         windowService.ShowWindowSingletonAsync<T>(typeof(T).Name, isDialogue)
+                         : windowService.ShowWindowAsync<T>(typeof(T).Name, isDialogue)
                 );
             return window;
         }
