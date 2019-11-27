@@ -131,6 +131,8 @@ namespace MVVM.Extension.Services.Windows
         private bool CloseWindowItem<T>(T window) where T : Component
         {
             var windowService = _windowService.Value;
+            if (_dialogue == window)
+                _dialogue = null;
             windowService.CloseWindow(window);
             return true;
         }

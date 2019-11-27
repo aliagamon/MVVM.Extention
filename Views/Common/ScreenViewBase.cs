@@ -88,7 +88,7 @@ namespace MVVM.Extension.Views.Common
 
         private const string SingletonMark = "singleton";
         private bool IsSingleton(GameObject window) =>
-            !window.gameObject.name.StartsWith(SingletonMark);
+            window.gameObject.name.StartsWith(SingletonMark);
 
         public async UniTask<TWindow> ShowWindowSingletonAsync<TWindow>
             (string windowName, bool isDialogue) where TWindow : Component
@@ -99,7 +99,7 @@ namespace MVVM.Extension.Views.Common
                     windowName,
                     isDialogue ? _dialogueRoot : _windowRoot
                 );
-            if (IsSingleton(window.gameObject))
+            if (!IsSingleton(window.gameObject))
                 window.gameObject.name = SingletonMark +
                                             window.gameObject.name;
             return window;
